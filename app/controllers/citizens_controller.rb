@@ -19,10 +19,23 @@ class CitizensController < ApplicationController
   end
 
   def create
+    @new_citizen = Citizen.new(params_citizen)
+
+    if @new_citizen.save
+      redirect_to new_citizen_appointment_path(@new_citizen)
+    else
+      render :new
+    end
   end
 
   def edit
     search_user = Citizen.find(params[:citizen][:id])
+  end
+
+  private
+
+  def params_citizen
+    params.require(:citizen).permit([:email, :password, :postal_code])
   end
 
 end

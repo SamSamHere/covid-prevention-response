@@ -25,4 +25,11 @@ Citizen.create!(
   postal_code: '123412',
 )
 
+# create 3 clinics
+puts "Create one clinic"
+  Clinic.create(
+    address: "Address #{rand(5..20)}",
+    capacity: rand(5..20),
+)
+
 puts "Done"

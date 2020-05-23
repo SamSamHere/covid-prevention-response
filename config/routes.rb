@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # post :admin, to: 'admin#authenticate'
 
   resources :citizens, only: [:create, :edit, :update] do
-    resources :appointments, only: [:create, :new]
+    resources :appointments, only: [:new, :create]
   end
 
   resources :clinics, only: [:new, :create, :edit, :update, :show]

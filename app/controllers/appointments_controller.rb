@@ -2,17 +2,16 @@ class AppointmentsController < ApplicationController
   before_action :set_instances
 
   def new # Book new Appointments
-    # Runs :set_instances
   end
 
   def create # Create new Appointments
     # Runs :set_instances
-    @clinic_ = Clinic.find(params[:appointment][:clinic_id])
+    appt_clinic = Clinic.find(params[:appointment][:clinic_id])
     # Initiating new appointment -> Clinic id
-    @clinic = @new_appointment.clinic
+    new_appointment.clinic = appt_clinic
 
-    if @new_appointment.save
-      redirect_to clinic_path(@clinic)
+    if new_appointment.save
+      redirect_to clinic_path(appt_clinic)
     else
       render :new
     end
@@ -23,13 +22,13 @@ class AppointmentsController < ApplicationController
   private
 
   def set_instances
-    # Need 3 Instance Variables to make one Appointment
-    # => 1 Citizen + Random Clinic + Empty Appointment
     @new_appointment = Appointment.new
     @citizen = Citizen.find(params[:citizen_id])
-    # Initiating new appointment -> Appointmetn id
-    @citizen = @new_appointment.citizen
+    @new_appointment.citizen =  @citizen
   end
 
+
+  #   <%= f.association :citizen, input_html: { value: @citizen.email } %>
+  # <%= f.association :clinic %>
 
 end

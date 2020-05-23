@@ -1,5 +1,7 @@
 <h1>Book an appointment here!</h1>
 
-<%= form_for(@things) do |f| %>
 
+<%= simple_form_for @new_appointment  do |f| %>
+
+  <%= f.button :submit, class: 'btn btn-primary'%>
 <% end %>
